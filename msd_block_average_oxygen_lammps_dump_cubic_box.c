@@ -6,8 +6,8 @@
 #define mol 2000 //total number of water molecules
 #define N1 mol//number of atoms of type 1 (O)
 #define N2 (2*mol)//number of atoms of type 2 (H)
-#define datafile1 "pw_nvt1.dump" 
-#define datafile2 "pw_nvt2.dump"
+#define datafile1 "pw_nvt1.dump" //path to the first datafile
+#define datafile2 "pw_nvt2.dump" //path to the second datafile
 #define max_time_f1 20000//maximum timestep for first data-file
 #define max_time_f2 20000//maximum timestep for second data-file
 #define max_time (max_time_f1+max_time_f2)//maximum timestep 
