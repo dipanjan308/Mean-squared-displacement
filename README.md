@@ -1,2 +1,1 @@
-Mean squared displacement and the standard error obtained from block averaging is calculated for trajectory obtained from LAMMPS molecular dynamics simulation of pure water. 
-In the current version of the code the trajectory has to be unwrapped.
+Mean squared displacement and the standard error obtained from block averaging is calculated for trajectory obtained from LAMMPS molecular dynamics simulation of pure water. If the trajectory is wrapped (x, y, z in LAMMPS) with periodic boundary conditions it can be wnwrapped using the function unfold_trajectory. If xu, yu, xu coordinated are printed in LAMMPS dump file no such unwrapping of atomic positions is required.
