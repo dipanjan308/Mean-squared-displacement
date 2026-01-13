@@ -107,6 +107,23 @@ void import_position_file(const char *str, double *xcod, double *ycod, double *z
    }
    fclose(fp1);
 }
+void unfold_trajectory(double *xcod, double *ycod, double *zcod)
+{
+        int i,j,ind,indp,t;
+        t=floor(max_time/(GAP*GAP_r));
+        //printf("%.8lf\t%.8lf\t%.8lf\n",box_x,box_y,box_z);
+        for(i=1;i<t;i++)
+        {
+                for(j=0;j<N1+N2;j++)
+                {
+                        ind=j+i*(N1+N2);
+                        indp=j+(i-1)*(N1+N2);
+                        xcod[ind]=xcod[ind]-rint((xcod[ind]-xcod[indp])/box_x)*box_x;
+                        ycod[ind]=ycod[ind]-rint((ycod[ind]-ycod[indp])/box_y)*box_y;
+                        zcod[ind]=zcod[ind]-rint((zcod[ind]-zcod[indp])/box_z)*box_z;
+                }
+        }
+}
 double calculate_sliding_msd_each_particle(double *xcod, double *ycod, double *zcod, int block_size, int tau, int start_ind, int part_ind)
 {
 	int i,indi,indf;
@@ -237,6 +254,7 @@ int main()
 	import_position_file(datafile1,xcod,ycod,zcod,ind_frame,max_time_f1);
 	ind_frame=floor(max_time_f1/(GAP*GAP_r));
 	import_position_file(datafile2,xcod,ycod,zcod,ind_frame,max_time_f2);
+	//unfold_trajectory(xcod,ycod,zcod);
 	int block_size;
 	block_size=800;
 	block_average(xcod,ycod,zcod,block_size);
