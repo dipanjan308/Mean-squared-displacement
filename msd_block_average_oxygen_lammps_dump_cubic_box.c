@@ -21,7 +21,7 @@
 int timestep,atoms,atom_id,atom_type;
 int index1[N1],index2[N2];
 long mas=max_array_size;
-double xlo,xhi,ylo,yhi,zlo,zhi,xt,yt,zt;
+double xlo,xhi,ylo,yhi,zlo,zhi,xt,yt,zt,box_x,box_y,box_z;
 
 void get_particle_index_from_the_first_frame(const char *str)
 {
@@ -67,6 +67,9 @@ void get_particle_index_from_the_first_frame(const char *str)
 				break;
 			}
 		}
+		box_x=xhi-xlo;
+		box_y=yhi-ylo;
+		box_z=zhi-zlo;
    }
    fclose(fp1);
 }
